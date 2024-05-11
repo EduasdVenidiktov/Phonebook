@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "https://662aacb4d3f63c12f45861e5.mockapi.io";
+axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 
 const fetchContacts = createAsyncThunk(
   "contacts / fetchAll",
@@ -19,7 +19,7 @@ const fetchContacts = createAsyncThunk(
   }
 );
 
-const addContacts = createAsyncThunk(
+const addContact = createAsyncThunk(
   "contacts/add",
 
   async (newItem, thunkAPI) => {
@@ -32,7 +32,7 @@ const addContacts = createAsyncThunk(
   }
 );
 
-const deleteContacts = createAsyncThunk(
+const deleteContact = createAsyncThunk(
   "contacts/delete",
   async (itemId, thunkAPI) => {
     try {
@@ -44,4 +44,4 @@ const deleteContacts = createAsyncThunk(
   }
 );
 
-export { fetchContacts, addContacts, deleteContacts };
+export { fetchContacts, addContact, deleteContact };

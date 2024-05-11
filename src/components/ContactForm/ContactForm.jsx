@@ -4,50 +4,50 @@ import { useId } from "react";
 import * as Yup from "yup"; //імпорт бібліотеки валідації в компонент форми.
 import { useDispatch } from "react-redux";
 import CounterContacts from "../Counter/Counter.jsx";
-import { addContacts } from "../../redux/contactsOps.js";
+import { addContact } from "../../redux/contacts/operations.js";
 
 const initialValues = {
   Name: "",
-  Country: "",
+  // Country: "",
   Number: "",
-  Mail: "",
+  // Mail: "",
 };
 
 export default function ContactForm() {
   const dispatch = useDispatch();
   const nameFieldId = useId(); //хук useId для створення унікальних ідентифікаторів полів.
-  const countryFieldId = useId();
+  // const countryFieldId = useId();
   const numberFieldId = useId();
-  const mailFieldId = useId();
+  // const mailFieldId = useId();
   const FeedbackSchema = Yup.object().shape({
     Name: Yup.string()
       .trim() //Yup.string(), Yup.min(), Yup.max(), Yup.required() - валідатори,
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
-    Country: Yup.string()
-      .trim()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      // .matches(/^[^0-9]*$/, "Name should not contain numbers") // не дозволяє вводити цифри
-      .required("Required"),
+    // Country: Yup.string()
+    //   .trim()
+    //   .min(3, "Too Short!")
+    //   .max(50, "Too Long!")
+    //   // .matches(/^[^0-9]*$/, "Name should not contain numbers") // не дозволяє вводити цифри
+    //   .required("Required"),
     Number: Yup.string("Must be a valid number!").required("Required"),
-    Mail: Yup.string()
-      .trim()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
+    // Mail: Yup.string()
+    //   .trim()
+    //   .min(3, "Too Short!")
+    //   .max(50, "Too Long!")
+    //   .required("Required"),
   });
 
   // При відправці форми викликається колбек-функція
   const handleSubmit = (values, actions) => {
     const newContact = {
       name: values.Name,
-      country: values.Country,
+      // country: values.Country,
       number: values.Number,
-      mail: values.Mail,
+      // mail: values.Mail,
     };
-    dispatch(addContacts(newContact)); // Додаємо новий контакт до списку або передаємо його до батьківського компонента
+    dispatch(addContact(newContact)); // Додаємо новий контакт до списку або передаємо його до батьківського компонента
 
     actions.resetForm(); //метод resetForm для очищення полів форми після відправки.
   };
@@ -69,20 +69,20 @@ export default function ContactForm() {
           />
           <ErrorMessage name="Name" component="p" className={css.errorMess} />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor={countryFieldId}>Country</label>
           <Field
             className={css.field}
             type="text"
             name="Country"
             id={countryFieldId}
-          />
-          <ErrorMessage
+          /> */}
+        {/* <ErrorMessage
             name="Country"
             component="p"
             className={css.errorMess}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor={numberFieldId}>Number</label>
           <Field
@@ -93,7 +93,7 @@ export default function ContactForm() {
           />
           <ErrorMessage name="Number" component="p" className={css.errorMess} />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor={mailFieldId}>e-mail</label>
           <Field
             className={css.field}
@@ -102,7 +102,7 @@ export default function ContactForm() {
             id={mailFieldId}
           />
           <ErrorMessage name="Mail" component="p" className={css.errorMess} />
-        </div>
+        </div> */}
 
         <CounterContacts />
         <button className={css.btnAdd} type="submit">
