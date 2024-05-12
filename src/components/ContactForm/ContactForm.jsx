@@ -5,6 +5,7 @@ import * as Yup from "yup"; //імпорт бібліотеки валідаці
 import { useDispatch } from "react-redux";
 import CounterContacts from "../Counter/Counter.jsx";
 import { addContact } from "../../redux/contacts/operations.js";
+import toast from "react-hot-toast";
 
 const initialValues = {
   Name: "",
@@ -50,6 +51,8 @@ export default function ContactForm() {
     dispatch(addContact(newContact)); // Додаємо новий контакт до списку або передаємо його до батьківського компонента
 
     actions.resetForm(); //метод resetForm для очищення полів форми після відправки.
+
+    toast.success("Contact added successfully");
   };
 
   return (

@@ -59,7 +59,7 @@ const logIn = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
  */
 const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.post("/users/current");
+    await axios.post("/users/logout");
     // After successful login, add the token to the HTTP header
     clearAuthHeader();
   } catch (error) {

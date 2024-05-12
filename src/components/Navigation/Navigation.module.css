@@ -1,4 +1,62 @@
+.nav {
+  display: flex;
+  gap: 4px;
+}
+
 .link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: red;
+}
+
+.navButton {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  font-size: 20px;
+}
+
+.navButton :hover {
+  font-size: 1.02em;
+  text-decoration: none;
+}
+
+/* .navButton {
+  display: flex;
+  gap: 30px;
+  list-style: none; 
+  font-size: 20px;
+}
+.navButton :hover {
+  font-size: 1.02em;
+  color: brown;
+}
+
+.navButton :active {
+  color: red;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: red;
+} */
+
+/* .link {
   display: inline-block;
   text-decoration: none;
   padding: 12px;
@@ -6,6 +64,7 @@
   color: #2a363b;
 }
 
-.link.active {
+.link :active {
   color: #e84a5f;
 }
+ */

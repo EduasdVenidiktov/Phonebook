@@ -11,12 +11,9 @@ export default function HomePage() {
           Welcom to your contacts manager{" "}
           <img
             src="https://media.tenor.com/GCbRbnL1MYwAAAAi/contact-phone-number.gif"
-            alt="Phone gif" //
+            alt="Phone gif"
             className={css.gif}
           />
-          <span role="img" aria-label="Greeting icon">
-            💁‍♀️
-          </span>
         </h1>
       </div>
     </>

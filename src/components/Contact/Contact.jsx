@@ -6,11 +6,23 @@ import phoneIcon from "../../assets/phone.svg";
 import { deleteContact } from "../../redux/contacts/operations.js";
 
 import { useDispatch } from "react-redux";
+import Modal from "../Modal/Modal.jsx";
+import { useState } from "react";
 
 // export default function Contact({ id, name, number, mail, country }) {
 export default function Contact({ id, name, number }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
-  const handleDelete = () => dispatch(deleteContact(id));
+  const handleDelete = () => dispatch(deleteContact(id))
+    .then(() => {
+      setIsModalOpen(false); // Закриття модального вікна після успішного видалення
+    })
+    .catch((error) => {
+      console.error("Помилка при видаленні контакту:", error);
+      // Додайте необхідну обробку помилок тут
+      })
+
   return (
     <div className={css.contactContainer}>
       <div>
@@ -35,11 +47,17 @@ export default function Contact({ id, name, number }) {
           </a>
         </div> */}
       </div>
-      <div>
+      {/* <div>
         <button className={css.buttonDelete} onClick={handleDelete}>
           Delete
         </button>
-      </div>
+      </div> */}
+      <button onClick={() => setIsModalOpen(true)}>Delete</button>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 }
