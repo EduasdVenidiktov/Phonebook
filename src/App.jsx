@@ -21,8 +21,11 @@ export const App = () => {
   const { isRefreshing } = useSelector(selectIsRefreshing);
 
   useEffect(() => {
+    console.log("Dispatching refreshUser...");
+
     dispatch(refreshUser());
   }, [dispatch]); //виконується завжди, одразу після монтування
+  console.log("isRefreshing:", isRefreshing);
 
   //рендеримо розмітку діалогового вікна лище, якщо користувач незалогінений
   return isRefreshing ? (
@@ -52,8 +55,6 @@ export const App = () => {
             <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
-        {/*якщо жоден інший маршрут не підійде.
-          <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Layout>
   );

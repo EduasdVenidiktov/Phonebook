@@ -84,8 +84,12 @@ const refreshUser = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   try {
     // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken); //записуємо token на authHeader
+
+    console.log("До запроса...");
+
     const response = await axios.get("/user/current"); // виконємо запит на /user/current, відправляючи лише token, а отримуємо e-mail та name. token при refresh не повертається
 
+    console.log("После:", response);
     return response.data;
   } catch (error) {
     toast.error("Something went wrong. Please try later");
@@ -93,4 +97,5 @@ const refreshUser = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
 export { register, logIn, logOut, refreshUser };
