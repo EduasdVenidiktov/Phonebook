@@ -44,4 +44,25 @@ const deleteContact = createAsyncThunk(
   }
 );
 
-export { fetchContacts, addContact, deleteContact };
+// Операция для обновления контакта
+const updateContact = createAsyncThunk(
+  "contacts/updateContact",
+  async (updatedContact, thunkAPI) => {
+    const { id, name, number } = updatedContact;
+    try {
+      // Отправляем PATCH-запрос на сервер для обновления контакта
+      const response = await axios.patch(`/contacts/${id}`, {
+        name: name,
+        number: number,
+      });
+
+      // Возвращаем данные обновленного контакта для обработки в компоненте
+      return response.data;
+    } catch (error) {
+      // Если произошла ошибка, можно обработать её здесь
+      // Например, можно отправить действие для обработки ошибки в хранилище Redux
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export { fetchContacts, addContact, deleteContact, updateContact };
