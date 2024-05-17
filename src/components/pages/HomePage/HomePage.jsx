@@ -8,7 +8,7 @@ export default function HomePage() {
 
       <div className={css.container}>
         <h1 className={css.title}>
-          Welcom to your contacts manager{" "}
+          Welcom to your contacts manager!
           <img
             src="https://media.tenor.com/GCbRbnL1MYwAAAAi/contact-phone-number.gif"
             alt="Phone gif"

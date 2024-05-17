@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
-import css from "./ModalEdit.module.css"; // Assume you have a CSS file for the modal window
+import css from "./ModalEdit.module.css";
+import { TextField } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 
 const ModalEdit = ({
@@ -12,6 +13,7 @@ const ModalEdit = ({
   setEditedName,
   editedNumber,
   setEditedNumber,
+  contactId,
 }) => {
   // Render the toast container
   return (
@@ -23,27 +25,29 @@ const ModalEdit = ({
         ReactDOM.createPortal(
           <div className={css.modal}>
             <div className={css.modalContent}>
-              <input
+              <TextField
+                label="New name"
+                variant="filled"
                 type="text"
                 value={editedName}
                 onChange={(e) => setEditedName(e.target.value)}
               />
-              <input
-                type="text"
-                value={editedNumber}
-                onChange={(e) => setEditedNumber(e.target.value)}
-              />
-              {/* Confirm button */}
               <button
                 onClick={() => {
-                  onConfirm();
+                  onConfirm(contactId);
                   toast.success("Saved successfully");
                 }}
               >
                 {confirmButtonText}
               </button>
-              {/* Cancel button */}
               <button onClick={onClose}>{cancelButtonText}</button>
+              <TextField
+                label="New number"
+                variant="filled"
+                type="search"
+                value={editedNumber}
+                onChange={(e) => setEditedNumber(e.target.value)}
+              />
             </div>
           </div>,
           document.getElementById("modal-root")

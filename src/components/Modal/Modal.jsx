@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 import css from "./Modal.module.css"; // Assume you have a CSS file for the modal window
 import toast, { Toaster } from "react-hot-toast";
+import { Typography } from "@mui/material";
 
 const Modal = ({ isOpen, onClose, onConfirm }) => {
   // Render the toast container
@@ -13,28 +14,36 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
         ReactDOM.createPortal(
           <div className={css.modal}>
             <div className={css.modalContent}>
-              <p>Ви впевнені, що хочете видалити контакт?</p>
+              <Typography variant="h5" component="span" color="maroon">
+                Are you sure you want to delete this contact?
+              </Typography>
               {/* Confirm button */}
-              <button
-                onClick={() => {
-                  onConfirm();
-                  toast.success("Deleted successfully");
-                }}
-              >
-                <img
-                  src="https://i.gifer.com/7efs.gif"
-                  alt="Yes gif"
-                  className={css.gif}
-                />
-              </button>
-              {/* Cancel button */}
-              <button onClick={onClose}>
-                <img
-                  src="https://i.gifer.com/3klc.gif"
-                  alt="No gif"
-                  className={css.gif}
-                />
-              </button>
+              <div className={css.modalButton}>
+                <button
+                  onClick={() => {
+                    onConfirm();
+                    toast.success("Deleted successfully");
+                  }}
+                  className={css.modalButton} // Доданий клас для конкретного стилю кнопки
+                >
+                  <img
+                    src="https://cdn.pixabay.com/animation/2023/04/19/19/48/19-48-46-868_512.gif"
+                    alt="Yes gif"
+                    className={css.gif}
+                  />
+                </button>
+                {/* Cancel button */}
+                <button
+                  onClick={onClose}
+                  className={css.modalButton} // Доданий клас для конкретного стилю кнопки
+                >
+                  <img
+                    src="https://i.gifer.com/3klc.gif"
+                    alt="No gif"
+                    className={css.gif}
+                  />
+                </button>
+              </div>
             </div>
           </div>,
           document.getElementById("modal-root")
@@ -44,58 +53,3 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
 };
 
 export default Modal;
-//=========================================================
-// // import React from "react"; // Не потрібно, оскільки ми використовуємо функціональні компоненти
-// import ReactDOM from "react-dom";
-// import css from "./Modal.module.css"; // Припустимо, що у вас є файл стилів для модального вікна
-// // import { useDispatch } from "react-redux";
-// // import toast from "react-hot-toast";
-// // import { deleteContact } from "../../redux/contacts/operations";
-
-// const Modal = ({ isOpen, onClose, onConfirm }) => {
-//   //   const dispatch = useDispatch();
-
-//   //   const handleConfirm = () => {
-//   //     // Выполняем операцию удаления контакта
-//   //     dispatch(deleteContact(contactId))
-//   //       .then(() => {
-//   //         // Если удаление прошло успешно, выводим сообщение об успешной операции
-//   //         toast.success("Контакт успешно удален");
-//   //         // Закрываем модальное окно
-//   //         onClose();
-//   //       })
-//   //       .catch(() => {
-//   //         // Если произошла ошибка при удалении, выводим сообщение об ошибке
-//   //         toast.error("Ошибка при удалении контакта");
-//   //         // Закрываем модальное окно
-//   //         onClose();
-//   //       });
-//   //   };
-
-//   if (!isOpen) return null;
-
-//   return ReactDOM.createPortal(
-//     <div className={css.modal}>
-//       <div className={css.modalContent}>
-//         <p>Ви впевнені, що хочете видалити контакт?</p>
-//         <button onClick={onConfirm}>
-//           <img
-//             src="https://i.gifer.com/7efs.gif"
-//             alt="Yes gif" //i.gifer.com/5sHb.gif //
-//             className={css.gif}
-//           />
-//         </button>
-//         <button onClick={onClose}>
-//           <img
-//             src="https://i.gifer.com/3klc.gif "
-//             alt="No gif"
-//             className={css.gif}
-//           />
-//         </button>
-//       </div>
-//     </div>,
-//     document.getElementById("modal-root") // Відображення модального вікна в елементі з id = "modal-root"
-//   );
-// };
-
-// export default Modal;

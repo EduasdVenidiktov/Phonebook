@@ -10,3 +10,10 @@
   font-size: 48px;
   text-align: center;
 }
+
+body {
+  background: #a8dbf8;
+}
+.gif {
+  margin: 0 auto;
+}

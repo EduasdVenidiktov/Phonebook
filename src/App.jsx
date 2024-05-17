@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
+import toast from "react-hot-toast";
 
 const HomePage = lazy(() => import("./components/pages/HomePage/HomePage"));
 const RegisterPage = lazy(() =>
@@ -21,15 +22,12 @@ export const App = () => {
   const { isRefreshing } = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    console.log("Dispatching refreshUser...");
-
     dispatch(refreshUser());
   }, [dispatch]); //виконується завжди, одразу після монтування
-  console.log("isRefreshing:", isRefreshing);
 
-  //рендеримо розмітку діалогового вікна лище, якщо користувач незалогінений
+  //рендеримо розмітку діалогового вікна лише, якщо користувач незалогінений
   return isRefreshing ? (
-    <b>Refresning user...</b>
+    toast.loading(`Refresning user...`)
   ) : (
     <Layout>
       <Routes>
@@ -59,47 +57,3 @@ export const App = () => {
     </Layout>
   );
 };
-//=========================================================================
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { fetchContacts } from "./redux/contactsOps";
-// import { selectContactsState } from "./redux/selectors";
-// import ContactForm from "./components/ContactForm/ContactForm";
-
-// import css from "./App.module.css";
-// import ContactsList from "./components/ContactList/ContactList";
-// import Loader from "./components/Loader/Loader";
-// import toast, { Toaster } from "react-hot-toast";
-// import { setSearchContact } from "./redux/contacts/slice";
-
-// export default function App() {
-//   const dispatch = useDispatch();
-
-//   const handleSearchChange = (value) => {
-//     dispatch(setSearchContact(value));
-//   };
-
-//   const contactsState = useSelector(selectContactsState);
-//   useEffect(() => {
-//     dispatch(fetchContacts()).catch(() => {
-//       toast.error("Failed to load contacts. Please try again later.");
-//     });
-//   }, [dispatch]);
-
-//   const { isLoading } = contactsState;
-
-//   return (
-//     <div className={css.container}>
-//       <header>
-//         <h1 className={css.title}>Phonebook</h1>
-//       </header>
-//       <ContactForm contacts={contactsState} />
-//       {isLoading ? <Loader /> : null}
-//       <ContactsList
-//         searchContact={contactsState.searchContact}
-//         onSearchChange={handleSearchChange}
-//       />
-//       <Toaster position="top-center" />{" "}
-//     </div>
-//   );
-// }

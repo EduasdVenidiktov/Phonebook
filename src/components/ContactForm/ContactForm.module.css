@@ -9,7 +9,7 @@
 }
 
 .form {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 20px;
   border-radius: 4px;
   background-color: rgb(81, 101, 215);
@@ -33,7 +33,7 @@
 }
 
 .btnAdd {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
   font-size: 18px;
   background-color: #3c1cf0;
@@ -50,4 +50,8 @@
 }
 .errorMess {
   color: red;
+}
+.wrap {
+  display: flex;
+  gap: 80px;
 }

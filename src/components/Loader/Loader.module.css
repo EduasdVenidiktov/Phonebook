@@ -4,7 +4,6 @@
 .loader {
   width: 48px;
   height: 48px;
-  /* display: inline-block; */
   position: relative;
   border: 3px solid;
   border-color: #de3500 #0cdc0c00 #3209e8 #f9f902eb;

@@ -33,20 +33,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-  // devTools: process.env.NODE_ENV === "development",
 });
 
 export const persistor = persistStore(store);
-//============================================================
-// import { configureStore } from "@reduxjs/toolkit";
-// import { contactsReducer } from "./contacts/slice";
-// import { filtersReducer } from "./filters/slice";
-
-// const store = configureStore({
-//   reducer: {
-//     contacts: contactsReducer, // Первісний редусер для контактів
-//     filters: filtersReducer,
-//   },
-// });
-
-// export default store;

@@ -9,7 +9,6 @@ const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
 const Navigation = () => {
-  // const { isLoggedIn } = useSelector(selectIsLoggedIn);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (

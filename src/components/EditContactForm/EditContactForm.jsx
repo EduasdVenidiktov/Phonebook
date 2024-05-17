@@ -1,4 +1,3 @@
-// Компонент редактирования контакта
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editContact } from "../redux/contacts/actions";
@@ -10,7 +9,7 @@ const EditContactForm = ({ contact }) => {
   const dispatch = useDispatch();
 
   const handleEdit = () => {
-    // Отправляем PATCH-запрос на сервер для обновления контакта
+    // Відправляємо PATCH-запрос на сервер для оновлення контакту
     dispatch(editContact(contact.id, { name, email }));
   };
 

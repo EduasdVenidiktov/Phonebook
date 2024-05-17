@@ -1,51 +1,3 @@
-// import css from "./Contact.module.css";
-// import personIcon from "../../assets/person.svg";
-// import phoneIcon from "../../assets/phone.svg";
-
-// import { deleteContact } from "../../redux/contacts/operations.js";
-
-// import { useDispatch } from "react-redux";
-// import Modal from "../Modal/Modal.jsx";
-// import { useState } from "react";
-
-// export default function Contact({ id, name, number }) {
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-
-//   const dispatch = useDispatch();
-//   const handleDelete = () =>
-//     dispatch(deleteContact(id))
-//       .then(() => {
-//         setIsModalOpen(false); // Закриття модального вікна після успішного видалення
-//       })
-//       .catch((error) => {
-//         console.error("Помилка при видаленні контакту:", error);
-//         // Додайте необхідну обробку помилок тут
-//       });
-
-//   return (
-//     <div className={css.contactContainer}>
-//       <div>
-//         <div className={css.infoBlock}>
-//           <img className={css.icon} src={personIcon} alt="Icon people" />
-//           <h3>{name}</h3>
-//         </div>
-
-//         <div className={css.infoBlock}>
-//           <img className={css.icon} src={phoneIcon} alt="Icon phone" />
-//           <a className={css.infoLink} href={`tel:${number}`}>
-//             {number}
-//           </a>
-//         </div>
-//       </div>
-//       <button onClick={() => setIsModalOpen(true)}>Delete</button>
-//       <Modal
-//         isOpen={isModalOpen}
-//         onClose={() => setIsModalOpen(false)}
-//         onConfirm={handleDelete}
-//       />
-//     </div>
-//   );
-// }
 import css from "./Contact.module.css";
 import personIcon from "../../assets/person.svg";
 import phoneIcon from "../../assets/phone.svg";
@@ -56,8 +8,10 @@ import { useEffect, useState } from "react";
 import {
   deleteContact,
   updateContact,
-} from "../../redux/contacts/operations.js"; // Добавляем импорт операции обновления контакта
-import ModalEdit from "../ModalEdit/ModalEdit.jsx"; // Импортируем компонент ModalEdit
+} from "../../redux/contacts/operations.js"; // Додаємо імпорт операції оновлення контакту
+import ModalEdit from "../ModalEdit/ModalEdit.jsx"; // Імпортуємо компонент ModalEdit
+import Modal from "../Modal/Modal.jsx";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 export default function Contact({ id, name, number }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -81,7 +35,7 @@ export default function Contact({ id, name, number }) {
       name: editedName,
       number: editedNumber,
     };
-    dispatch(updateContact(updatedContact)); // Вызываем операцию обновления контакта
+    dispatch(updateContact(updatedContact)); // Викликаємо операцію оновлення контакту
     setIsEditModalOpen(false);
   };
 
@@ -94,29 +48,45 @@ export default function Contact({ id, name, number }) {
       .then(() => {
         setIsDeleteModalOpen(false);
       })
-      .catch((error) => {
-        console.error("Error deleting contact:", error);
-        // Обработка ошибки удаления контакта
-      });
+      .catch(() => {});
 
   return (
-    <div className={css.contactContainer}>
+    <Grid item className={css.contactContainer}>
       <div>
-        <div className={css.infoBlock}>
-          <img className={css.icon} src={personIcon} alt="Icon people" />
-          <h3>{name}</h3>
-        </div>
+        <Box>
+          <div className={css.infoBlock}>
+            <img className={css.icon} src={personIcon} alt="Icon people" />
+            <Typography variant="h6" sx={{ fontSize: "1.2rem" }}>
+              {name}
+            </Typography>
+          </div>
 
-        <div className={css.infoBlock}>
-          <img className={css.icon} src={phoneIcon} alt="Icon phone" />
-          <a className={css.infoLink} href={`tel:${number}`}>
-            {number}
-          </a>
-        </div>
+          <div className={css.infoBlock}>
+            <img className={css.icon} src={phoneIcon} alt="Icon phone" />
+            <Typography
+              component="a"
+              href={`tel:${number}`}
+              sx={{ fontSize: "1rem", mb: "0.5rem" }}
+            >
+              {number}
+            </Typography>
+          </div>
+        </Box>
+
+        <Stack direction="row" justifyContent="space-between">
+          <Button variant="contained" size="medium" onClick={handleEditClick}>
+            Edit
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            size="small"
+            onClick={handleDeleteClick}
+          >
+            Delete
+          </Button>
+        </Stack>
       </div>
-      <button onClick={handleEditClick}>Edit</button>
-
-      <button onClick={handleDeleteClick}>Delete</button>
 
       <ModalEdit
         isOpen={isEditModalOpen}
@@ -130,14 +100,13 @@ export default function Contact({ id, name, number }) {
         setEditedNumber={setEditedNumber}
       />
 
-      {/* Вместо Modal используем ModalEdit */}
-      <ModalEdit
+      <Modal
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleDelete}
         cancelButtonText="Cancel"
         confirmButtonText="Delete"
       />
-    </div>
+    </Grid>
   );
 }
