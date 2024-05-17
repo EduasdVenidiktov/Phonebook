@@ -11,7 +11,7 @@ const setAuthHeader = (token) => {
 
 //Utility to remove JWT очищує token
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = "";
+  delete axios.defaults.headers.common.Authorization;
 };
 
 //========== Операції =================================

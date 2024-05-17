@@ -2,15 +2,13 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
-
 const fetchContacts = createAsyncThunk(
-  "contacts / fetchAll",
-  // Використовуємо символ підкреслення як ім'я першого параметра,тому що в цій операції він нам не потрібен
+  "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/contacts");
-      // При успішному запиті повертаємо проміс із даними
+      const response = await axios.get(
+        "https://connections-api.herokuapp.com/contacts"
+      );
       return response.data;
     } catch (ev) {
       toast.error("Failed to load contacts. Please try again later.");
@@ -21,13 +19,23 @@ const fetchContacts = createAsyncThunk(
 
 const addContact = createAsyncThunk(
   "contacts/add",
-
   async (newItem, thunkAPI) => {
     try {
-      const response = await axios.post("/contacts", newItem);
+      const response = await axios.post(
+        "https://connections-api.herokuapp.com/contacts",
+        newItem
+      );
       return response.data;
-    } catch (ev) {
-      return thunkAPI.rejectWithValue(ev.message);
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        toast.error("Invalid contact data. Please check the data you entered.");
+      } else if (error.response && error.response.status === 401) {
+        toast.error("Unauthorized. Please log in to add a contact.");
+      } else {
+        toast.error("Failed to add contact. Please try again later.");
+      }
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -36,33 +44,37 @@ const deleteContact = createAsyncThunk(
   "contacts/delete",
   async (itemId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/contacts/${itemId}`);
+      const response = await axios.delete(
+        `https://connections-api.herokuapp.com/contacts/${itemId}`
+      );
       return response.data;
     } catch (ev) {
+      toast.error("Contact don`t deleted");
+
       return thunkAPI.rejectWithValue(ev.message);
     }
   }
 );
 
-// Операция для обновления контакта
 const updateContact = createAsyncThunk(
   "contacts/updateContact",
   async (updatedContact, thunkAPI) => {
     const { id, name, number } = updatedContact;
     try {
-      // Отправляем PATCH-запрос на сервер для обновления контакта
-      const response = await axios.patch(`/contacts/${id}`, {
-        name: name,
-        number: number,
-      });
-
-      // Возвращаем данные обновленного контакта для обработки в компоненте
+      const response = await axios.patch(
+        `https://connections-api.herokuapp.com/contacts/${id}`,
+        {
+          name: name,
+          number: number,
+        }
+      );
       return response.data;
     } catch (error) {
-      // Если произошла ошибка, можно обработать её здесь
-      // Например, можно отправить действие для обработки ошибки в хранилище Redux
+      toast.error("Contact don`t changed");
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 export { fetchContacts, addContact, deleteContact, updateContact };

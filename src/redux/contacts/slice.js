@@ -1,8 +1,8 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
-import { selectFilterContact } from "../filters/selectors";
+import { selectNameFilter } from "../filters/selectors";
 import { addContact, deleteContact, fetchContacts } from "./operations";
-import { selectContacts } from "./selectors";
+import { logOut } from "../auth/operations";
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -14,6 +14,11 @@ const contactsSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.isLoading = false;
+        state.error = null;
+      })
       .addCase(fetchContacts.pending, (state) => {
         state.isLoading = true;
       })
@@ -56,10 +61,12 @@ const contactsSlice = createSlice({
 const contactsReducer = contactsSlice.reducer;
 
 const { setSearchContact, setShowError } = contactsSlice.actions;
+// Внутрішній селектор для отримання всіх контактів
+const selectContacts = (state) => state.contacts.items;
 
 // Створення та експорт мемоізованого селектора selectFilteredContacts
 const selectFilteredContacts = createSelector(
-  [selectContacts, selectFilterContact],
+  [selectContacts, selectNameFilter],
   (contacts, filter) => {
     // Функція для фільтрації контактів
     return contacts.filter(

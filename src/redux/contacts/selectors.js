@@ -14,4 +14,25 @@ const selectContactsCount = createSelector(
   (contacts) => contacts.length
 );
 
-export { selectIsLoading, selectError, selectContacts, selectContactsCount };
+// Селектор для отримання значення фільтра імені
+const selectNameFilter = (state) => state.filters.nameFilter;
+
+// Селектор для фільтрації контактів за іменем
+const selectFilteredContacts = createSelector(
+  [selectContacts, selectNameFilter],
+  (contacts, nameFilter) => {
+    return contacts.filter(
+      (contact) =>
+        contact.name.toLowerCase().includes(nameFilter.toLowerCase()) ||
+        contact.number.includes(nameFilter)
+    );
+  }
+);
+
+export {
+  selectIsLoading,
+  selectError,
+  selectContacts,
+  selectContactsCount,
+  selectFilteredContacts,
+};
