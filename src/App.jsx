@@ -8,14 +8,10 @@ import { RestrictedRoute } from "./components/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute";
 import toast from "react-hot-toast";
 
-const HomePage = lazy(() => import("./components/pages/HomePage/HomePage"));
-const RegisterPage = lazy(() =>
-  import("./components/pages/RegisterPage/RegisterPage")
-);
-const LoginPage = lazy(() => import("./components/pages/LoginPage/LoginPage"));
-const ContactsPage = lazy(() =>
-  import("./components/pages/ContactsPage/ContactsPage")
-);
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const ContactsPage = lazy(() => import("./pages/ContactsPage/ContactsPage"));
 
 export const App = () => {
   const dispatch = useDispatch();
