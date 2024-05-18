@@ -1,0 +1,40 @@
+.customLogoutText {
+  font-family: "Comic Sans MS", cursive, sans-serif; /* Креативный шрифт */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Добавление тени текста */
+  background: linear-gradient(
+    45deg,
+    #00ff7f 30%,
+    #32cd32 90%
+  ); /* Градиентный фон: светло-зелёный до насыщенного зелёного */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 10px 20px; /* Отступы для улучшения внешнего вида */
+  border: 2px solid transparent; /* Обводка */
+  border-radius: 8px; /* Скругленные углы */
+  transition: all 0.3s ease; /* Плавный переход */
+}
+
+.customLogoutText:hover {
+  border-color: #32cd32; /* Изменение обводки при наведении */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Усиление тени при наведении */
+}
+
+.welcomeText {
+  color: lightyellow; /* Цвет текста */
+  margin-right: 20px; /* Отступ справа */
+  font-family: "Comic Sans MS", cursive, sans-serif; /* Креативный шрифт */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень текста */
+  background: linear-gradient(
+    45deg,
+    #e85ed4 30%,
+    #ffd700 30%
+  ); /* Градиентный фон: светло-зелёный до насыщенного зелёного */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 10px 20px; /* Отступы для улучшения внешнего вида */
+  border: 2px solid transparent; /* Обводка */
+  border-radius: 8px; /* Скругленные углы */
+  transition: all 0.3s ease; /* Плавный переход */
+}

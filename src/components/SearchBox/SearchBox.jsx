@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setStatusFilter } from "../../redux/filters/slice";
 import { Box, TextField, Typography } from "@mui/material";
+import css from "./SearchBox.module.css";
 
 const SearchBox = ({ value, onChange }) => {
   const dispatch = useDispatch();
@@ -12,16 +13,8 @@ const SearchBox = ({ value, onChange }) => {
   };
 
   return (
-    <Box
-      sx={{
-        width: 1000,
-        maxWidth: "100%",
-        marginBottom: "2rem", // Adding bottom margin to the box
-      }}
-    >
-      <Typography variant="h5" color="coral">
-        Find contacts by name
-      </Typography>
+    <Box className={css.customSearchBox}>
+      <Typography variant="h4">Find contacts by name</Typography>
       <TextField
         fullWidth
         id="fullWidth"

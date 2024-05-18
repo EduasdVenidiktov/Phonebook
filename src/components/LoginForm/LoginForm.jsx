@@ -4,6 +4,7 @@ import css from "./LoginForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup"; //імпорт бібліотеки валідації в компонент форми.
 import { useId } from "react";
+import toast from "react-hot-toast";
 
 const initialValues = {
   email: "",
@@ -38,10 +39,10 @@ export const LoginForm = () => {
     )
       .unwrap()
       .then(() => {
-        console.log("login success");
+        toast.success("login success");
       })
       .catch(() => {
-        console.log("login error");
+        toast.error("login error");
       });
 
     resetForm();

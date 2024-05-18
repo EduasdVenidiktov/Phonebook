@@ -1,9 +1,15 @@
 .link {
-  display: inline-block;
+  color: rgb(39, 40, 35);
   text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #c5e6f6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: color 0.3s;
+  display: inline-block;
+  padding-right: 12px;
+  font-size: 20px;
+}
+.link:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 
 .active {

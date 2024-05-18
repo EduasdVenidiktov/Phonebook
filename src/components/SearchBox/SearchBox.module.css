@@ -1,19 +1,8 @@
-.feedbackText {
-  margin-bottom: 30px;
-  border-radius: 8px;
-}
-h2 {
-  color: rgb(218, 246, 3);
-}
-.inputArea {
-  width: 400px;
-  height: 30px;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  border-radius: 3px;
-}
-.inputArea:hover {
-  border-color: blue;
-  background-color: rgb(214, 213, 213);
-  border-radius: 5px;
+.customSearchBox {
+  width: 1000px;
+  max-width: 100%;
+  margin-bottom: 2rem;
+  color: #daed0b; /* Креативный цвет текста */
+  font-family: "Comic Sans MS", cursive, sans-serif; /* Креативный шрифт */
+  text-shadow: 2px 2px 4px rgba(25, 24, 24, 0.3); /* Добавляем объемный эффект */
 }
