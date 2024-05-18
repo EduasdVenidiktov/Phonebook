@@ -77,7 +77,6 @@ const selectFilteredContacts = createSelector(
   }
 );
 
-export default contactsSlice;
 export {
   contactsReducer,
   setSearchContact,
