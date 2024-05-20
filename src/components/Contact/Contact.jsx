@@ -1,7 +1,6 @@
 import css from "./Contact.module.css";
-import personIcon from "../../assets/person.svg";
-import phoneIcon from "../../assets/phone.svg";
-
+import { FaUserTie } from "react-icons/fa6";
+import { FaPhoneVolume } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -55,14 +54,14 @@ export default function Contact({ id, name, number }) {
       <div>
         <Box>
           <div className={css.infoBlock}>
-            <img className={css.icon} src={personIcon} alt="Icon people" />
+            <FaUserTie />
             <Typography variant="h6" sx={{ fontSize: "1.2rem" }}>
               {name}
             </Typography>
           </div>
 
           <div className={css.infoBlock}>
-            <img className={css.icon} src={phoneIcon} alt="Icon phone" />
+            <FaPhoneVolume />
             <Typography
               component="a"
               href={`tel:${number}`}
@@ -73,7 +72,11 @@ export default function Contact({ id, name, number }) {
           </div>
         </Box>
 
-        <Stack direction="row" justifyContent="space-between">
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          className={css.buttonStack}
+        >
           <Button variant="contained" size="medium" onClick={handleEditClick}>
             Edit
           </Button>
