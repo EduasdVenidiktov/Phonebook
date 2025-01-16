@@ -1,6 +1,7 @@
 {
   "name": "goit-react-hw-06",
   "private": true,
+  "proxy": "https://connections-api.herokuapp.com",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com";
-
+// axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+axios.defaults.baseURL = "/";
 //Utility to add JWT отримє token і додає headers Authorization зі значенням Bairer ${token} на будь-який запит (common)
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`; //Bairer ${token} - патерн
